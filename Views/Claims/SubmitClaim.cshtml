@@ -8,6 +8,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Submit Your Claim</title>
     <link rel="stylesheet" href="~/css/dark-theme.css" />
+    <script>
+        // JavaScript function to calculate and update the salary total
+        function updateSalaryTotal() {
+            const hoursWorked = parseFloat(document.getElementById("HoursWorked").value) || 0;
+            const hourlyRate = parseFloat(document.getElementById("HourlyRate").value) || 0;
+            const salaryTotal = (hoursWorked * hourlyRate).toFixed(2); // Calculate salary total
+            document.getElementById("SalaryTotal").value = salaryTotal; // Update the read-only field
+        }
+    </script>
 </head>
 
 <body>
@@ -24,12 +33,17 @@
 
             <div class="form-group">
                 <label>Hours Worked:</label>
-                <input type="number" name="HoursWorked" value="@Model?.HoursWorked" step="0.1" placeholder="E.g., 15.5" required />
+                <input type="number" id="HoursWorked" name="HoursWorked" value="@Model?.HoursWorked" step="0.1" placeholder="E.g., 15.5" required oninput="updateSalaryTotal()" />
             </div>
 
             <div class="form-group">
                 <label>Hourly Rate:</label>
-                <input type="number" name="HourlyRate" value="@Model?.HourlyRate" step="0.01" placeholder="E.g., 75.00" required />
+                <input type="number" id="HourlyRate" name="HourlyRate" value="@Model?.HourlyRate" step="0.01" placeholder="E.g., 75.00" required oninput="updateSalaryTotal()" />
+            </div>
+
+            <div class="form-group">
+                <label>Total Salary:</label>
+                <input type="text" id="SalaryTotal" readonly class="form-control" value="0.00" />
             </div>
 
             <div class="form-group">
@@ -42,6 +56,7 @@
                 <input type="file" name="document" required />
                 <div class="text-danger">
                     @if (ViewData.ModelState.ContainsKey("document") && ViewData.ModelState["document"].Errors.Count > 0)
+
                     {
                         <span>@ViewData.ModelState["document"].Errors[0].ErrorMessage</span>
                     }
