@@ -17,6 +17,13 @@
             document.getElementById("SalaryTotal").value = salaryTotal; // Update the read-only field
         }
     </script>
+    <style>
+        /* Specific styling for the Total Salary field */
+        #SalaryTotal {
+            color: black; /* Set the text color to black */
+            background-color: #EAEAEA; /* Optional: Light background for better readability */
+        }
+    </style>
 </head>
 
 <body>
@@ -56,6 +63,8 @@
                 <input type="file" name="document" required />
                 <div class="text-danger">
                     @if (ViewData.ModelState.ContainsKey("document") && ViewData.ModelState["document"].Errors.Count > 0)
+
+
 
                     {
                         <span>@ViewData.ModelState["document"].Errors[0].ErrorMessage</span>
