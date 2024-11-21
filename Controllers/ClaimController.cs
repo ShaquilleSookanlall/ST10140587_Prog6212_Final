@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 public class ClaimsController : Controller
 {
     private readonly ApplicationDbContext _dbContext;
-    private readonly long _maxFileSize = 5 * 1024 * 1024;
+    private readonly long _maxFileSize = 5 * 1024 * 1024; // 5 MB
     private readonly string[] _allowedExtensions = { ".pdf", ".docx", ".xlsx" };
 
     public ClaimsController(ApplicationDbContext dbContext)
@@ -32,6 +32,7 @@ public class ClaimsController : Controller
         var userName = User.Identity.Name; // Get the logged-in user's username
         claim.LecturerName = userName; // Assign the lecturer's name to the claim
 
+        // Validate and save the uploaded document
         if (document != null && document.Length > 0)
         {
             var fileExtension = Path.GetExtension(document.FileName).ToLower();
@@ -61,10 +62,25 @@ public class ClaimsController : Controller
             return View(claim);
         }
 
+        // Calculate the salary and set the status based on the rules
+        claim.Salary = claim.HoursWorked * claim.HourlyRate;
+
+        // Automation rules for claim rejection
+        if (claim.HourlyRate > 150 || claim.HoursWorked > 100)
+        {
+            claim.Status = "Rejected"; // Automatically reject the claim
+            TempData["ErrorMessage"] = "Your claim was automatically rejected because it exceeded the allowed criteria.";
+        }
+        else
+        {
+            claim.Status = "Pending"; // Send for approval
+        }
+
+        // Save the claim to the database
         _dbContext.Claims.Add(claim);
         await _dbContext.SaveChangesAsync();
 
-        // Redirect directly to the Track Claims page
+        // Redirect to Track Claims page
         return RedirectToAction("TrackClaims");
     }
 

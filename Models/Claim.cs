@@ -25,5 +25,8 @@ namespace ST10140587_Prog6212_Part2.Models
 
         [Required]
         public string? DocumentPath { get; set; }
+
+        [Range(0, double.MaxValue, ErrorMessage = "Salary cannot be negative.")]
+        public double Salary { get; set; }
     }
 }
