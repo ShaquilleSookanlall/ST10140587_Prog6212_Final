@@ -1,0 +1,63 @@
+﻿@model IEnumerable<ST10140587_Prog6212_Part2.Models.Claim>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Approve Claims</title>
+    <link rel="stylesheet" href="~/css/dark-theme.css" />
+</head>
+
+<body>
+    <div class="container">
+        <h2 class="page-title">Pending Claims for Approval</h2>
+
+        @if (Model.Any())
+        {
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Lecturer Name</th>
+                        <th>Hours Worked</th>
+                        <th>Hourly Rate</th>
+                        <th>Notes</th>
+                        <th>Document</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var claim in Model)
+                    {
+                        <tr>
+                            <td>@claim.LecturerName</td>
+                            <td>@claim.HoursWorked</td>
+                            <td>@claim.HourlyRate</td>
+                            <td>@claim.Notes</td>
+                            <td>
+                                <a href="@claim.DocumentPath" target="_blank" class="btn btn-outline-dark">View</a>
+                            </td>
+                            <td>
+                                <form method="post" action="/Claims/ApproveClaim" style="display:inline;">
+                                    <input type="hidden" name="id" value="@claim.ClaimId" />
+                                    <button type="submit" class="btn btn-success">Approve</button>
+                                </form>
+                                <form method="post" action="/Claims/RejectClaim" style="display:inline;">
+                                    <input type="hidden" name="id" value="@claim.ClaimId" />
+                                    <button type="submit" class="btn btn-danger">Reject</button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <p class="no-claims">No pending claims to display.</p>
+        }
+    </div>
+</body>
+
+</html>

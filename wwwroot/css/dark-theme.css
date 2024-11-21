@@ -1,0 +1,122 @@
+﻿/* General body styling with dark background */
+body {
+    background-color: #0F0F1A;
+    color: #EAEAEA;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Container styling */
+.container {
+    width: 80%;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: rgba(33, 33, 44, 0.9);
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+}
+
+/* Title */
+.page-title {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+/* Form styling */
+.claim-form .form-group {
+    margin-bottom: 15px;
+}
+
+.claim-form input,
+.claim-form textarea {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #1C1C28;
+    color: white;
+}
+
+    .claim-form input::placeholder,
+    .claim-form textarea::placeholder {
+        color: #888;
+    }
+
+/* Form actions */
+.form-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+/* Table styling */
+.table {
+    background-color: white;
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 8px;
+}
+
+    .table th,
+    .table td {
+        padding: 12px;
+        border: 1px solid #dee2e6;
+    }
+
+    .table th {
+        background-color: #f8f9fa;
+        font-weight: bold;
+    }
+
+    .table tr:hover {
+        background-color: #f1f1f1;
+    }
+
+/* Buttons */
+.btn {
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn-success {
+    background-color: #28A745;
+    color: white;
+    border: none;
+}
+
+    .btn-success:hover {
+        background-color: #218838;
+    }
+
+.btn-danger {
+    background-color: #DC3545;
+    color: white;
+    border: none;
+}
+
+    .btn-danger:hover {
+        background-color: #C82333;
+    }
+
+.btn-outline-dark {
+    border: 1px solid #343A40;
+    color: #343A40;
+    text-decoration: none;
+}
+
+    .btn-outline-dark:hover {
+        background-color: #343A40;
+        color: white;
+    }
+
+/* No claims message */
+.no-claims {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #CCCCCC;
+}

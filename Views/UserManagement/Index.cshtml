@@ -1,0 +1,103 @@
+﻿@model IEnumerable<UserRolesViewModel>
+
+@{
+    ViewData["Title"] = "User Management";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Management</title>
+    <style>
+        /* General Styling */
+        body {
+            background-color: #0F0E17;
+            color: #E4E4E7;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 90vh;
+        }
+
+        .card {
+            background-color: #1A1A2E;
+            border-radius: 12px;
+            box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.25);
+            padding: 20px;
+            width: 90%; /* Stretch the card to take more space */
+            max-width: 1200px; /* Ensure it doesn't stretch too much */
+            margin: 0 auto;
+        }
+
+        h2 {
+            color: #FFFFFF;
+            font-weight: 600;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .table {
+            width: 100%;
+            margin-top: 10px;
+            border-collapse: collapse;
+            background-color: #FFFFFF;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .thead-dark {
+            background-color: #3D3D5C;
+            color: white;
+        }
+
+        .table th, .table td {
+            padding: 12px 15px;
+            text-align: left;
+        }
+
+        .table tbody tr:nth-child(even) {
+            background-color: #F5F5F5;
+        }
+
+        .table tbody tr:hover {
+            background-color: #D6E4FF;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <h2>User Management</h2>
+
+            <table class="table table-striped table-hover">
+                <thead class="thead-dark">
+                    <tr>
+                        <th style="width: 30%;">User ID</th>
+                        <th style="width: 35%;">Username</th>
+                        <th style="width: 35%;">Roles</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var user in Model)
+                    {
+                        <tr>
+                            <td>@user.UserId</td>
+                            <td>@user.UserName</td>
+                            <td>@string.Join(", ", user.Roles)</td> <!-- Display roles without badges -->
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

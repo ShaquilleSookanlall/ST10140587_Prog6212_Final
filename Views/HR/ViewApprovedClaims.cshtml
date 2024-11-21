@@ -1,0 +1,31 @@
+﻿@model IEnumerable<ST10140587_Prog6212_Part2.Models.Claim>
+
+<h2>Approved Claims</h2>
+
+<body>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Lecturer Name</th>
+                <th>Hours Worked</th>
+                <th>Hourly Rate</th>
+                <th>Total Amount</th>
+                <th>Notes</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var claim in Model)
+            {
+                <tr>
+                    <td>@claim.LecturerName</td>
+                    <td>@claim.HoursWorked</td>
+                    <td>@claim.HourlyRate</td>
+                    <td>@(claim.HoursWorked * claim.HourlyRate)</td>
+                    <td>@claim.Notes</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <a href="@Url.Action("GeneratePdfReport", "HR")" class="btn btn-primary m-2">Download PDF Report</a>
+    <a href="@Url.Action("GenerateExcelReport", "HR")" class="btn btn-success m-2">Download Excel Report</a>
+</body>
