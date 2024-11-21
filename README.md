@@ -1,95 +1,121 @@
 Contract Monthly Claim System (CMCS)
-
 Overview
+The Contract Monthly Claim System (CMCS) is a web-based application built using ASP.NET Core MVC. It streamlines the process of submitting, tracking, and approving claims for Independent Contractor (IC) lecturers. With distinct, role-based functionalities for Lecturers, Coordinators, and Managers, CMCS ensures efficiency, transparency, and accountability throughout the claim management process.
 
-The Contract Monthly Claim System (CMCS) is a web-based application developed using ASP.NET Core MVC. It simplifies the process of submitting, tracking, and approving claims for Independent Contractor (IC) lecturers. The system streamlines the workflow for lecturers, coordinators, and managers, ensuring efficiency, transparency, and accountability. Through a role-based structure, CMCS provides distinct functionalities for each user type, ensuring a seamless claim management process.
+The system includes features like automated validation of claims based on predefined rules, real-time salary calculation for claims, and comprehensive reporting options. It promotes administrative efficiency by automating repetitive tasks and enabling a seamless user experience.
 
-Lecturers can submit claims with attached supporting documents, track the status of their submissions, and view their claim history. Coordinators and managers are responsible for reviewing, approving, or rejecting these claims, ensuring their accuracy and completeness. The system reduces administrative overhead, allowing users to focus on more strategic activities.
-
+Features by Role
 Lecturer Functions
+As primary users of the system, lecturers initiate the claim submission process. The system provides the following features for lecturers:
 
-As the primary users, lecturers play a crucial role in initiating the claim process by submitting claims that reflect their work accurately. The system provides several features to support lecturers:
+Submit Claims with Real-Time Salary Calculation
 
-1. Submit Claims with Supporting Documents
-Lecturers can create and submit claims by providing essential details such as hours worked and the applicable hourly rate. Each submission requires a supporting document (PDF, DOCX, or XLSX) to validate the claim. The system enforces a 5 MB file size limit to ensure manageable uploads.
+Lecturers can create claims by entering hours worked and hourly rate, while the system automatically calculates and displays the total salary in real time.
+Supporting documents (PDF, DOCX, XLSX) are mandatory, with a 5 MB file size limit enforced for uploads.
+Automated Claim Validation
 
-2. Track Claim Status
-The system provides lecturers with real-time access to the status of their submitted claims. Each claim can have one of three statuses: Pending, Approved, or Rejected, promoting transparency.
+Claims exceeding 150 hours worked or an hourly rate above $150 are automatically rejected.
+Valid claims are submitted with a "Pending" status for further review by coordinators or managers.
+Track Claim Status
 
-3. View Claim History
-Lecturers can view a detailed history of all submitted claims, including their status and any feedback provided. This feature ensures that lecturers remain informed about their submissions and can resubmit rejected claims with corrections if necessary.
+Lecturers can monitor the status of submitted claims (Pending, Approved, Rejected) in real time, ensuring transparency.
+View Claim History
 
-4. Create Multiple Claims
-Lecturers are not limited in the number of claims they can submit. This feature supports lecturers managing multiple projects, allowing them to document all their work comprehensively.
+A detailed history of all claims, including statuses and feedback on rejected claims, helps lecturers resubmit with corrections.
+Submit Multiple Claims
 
+Lecturers can document and manage work across multiple projects by submitting multiple claims.
 Coordinator and Manager Functions
-Coordinators and managers share the responsibility of ensuring claim accuracy by reviewing, approving, or rejecting claims. Their actions ensure fair compensation and accountability in the system.
+Coordinators and managers oversee claim reviews, ensuring fairness and accountability. Their features include:
 
-1. View Pending Claims
-Coordinators and managers can view a list of all pending claims awaiting review. Claims are organized by submission date, ensuring that no claim is missed, and reviews can be prioritized effectively.
+View Pending Claims
 
-2. Approve Claims
-After verifying the hours worked and the attached supporting documents, coordinators and managers can approve valid claims. Approved claims are updated with a status of Approved, and the lecturer is notified of the approval.
+Access a list of all pending claims for review, prioritized by submission date.
+Approve or Reject Claims
 
-3. Reject Claims
-If discrepancies are found in a claim, such as incorrect hours or missing documents, coordinators and managers can reject it. The system allows them to provide feedback, helping the lecturer make the necessary corrections and resubmit the claim.
+Approve valid claims to update their status to "Approved."
+Reject invalid claims and provide feedback to help lecturers make necessary corrections.
+Access Detailed Claim History
 
+Coordinators and managers can view the full history of all claims for auditing and tracking purposes.
+HR Functions
+The system also provides features for HR personnel to handle claim processing and reporting:
+
+Generate Reports
+
+Generate PDF or Excel reports of approved claims for payroll processing or record-keeping.
+Manage Lecturer Data
+
+HR personnel can update lecturer profiles and view consolidated claim information.
 Technical Overview
+CMCS is developed using ASP.NET Core MVC with C# for back-end logic. It leverages the Entity Framework for database interactions and includes role-based authentication and authorization. Key features of the technical implementation include:
 
-The CMCS is developed using ASP.NET Core MVC, leveraging C# for backend functionality. It features role-based authentication, ensuring secure access to specific pages based on user roles (Lecturer, Coordinator, Manager). For the development phase, the system uses an in-memory database to store claims and user information. This can be replaced with an Azure SQL Database or SQL Server in a production environment.
+Authentication and Authorization
 
-All uploaded documents are stored under the /wwwroot/uploads directory, making them easily accessible for review and reference.
+Role-based access control ensures secure access for Lecturers, Coordinators, Managers, and HR personnel.
+File Storage
 
-User Interface Overview
-CMCS offers a clean, role-specific interface that enhances usability. Each role—Lecturer, Coordinator, and Manager—has unique pages tailored to their needs, ensuring efficient task completion.
+Supporting documents are uploaded and stored in the database as binary data, ensuring secure storage and easy retrieval.
+Automated Validation
 
-1. Homepage
-The homepage provides an overview of the system with login options for lecturers, coordinators, and managers. Upon logging in, users are redirected to their respective dashboards based on their role.
+Claims are automatically validated against predefined rules for hours worked and hourly rate, improving accuracy and reducing manual errors.
+Responsive Design
 
-2. Submit Claim Page
-Lecturers can submit new claims from this page. It includes real-time validation to ensure uploaded documents meet the size and file type requirements, minimizing submission errors.
-
-3. Pending Claims Page
-Coordinators and managers can access this page to view all pending claims. Each claim is displayed with the necessary details, allowing them to approve or reject submissions efficiently.
-
-4. Claims History Page
-Lecturers can view their complete claim history, including submission dates, statuses, and feedback. They can also download previously uploaded documents for review or resubmission.
-
-Workflow Summary
-The CMCS system ensures smooth collaboration between lecturers, coordinators, and managers. Below is a summary of the workflow:
-
-Lecturer:
-
-Submit claims with supporting documents.
-Track claim statuses in real-time.
-Review rejected claims and resubmit corrections.
-
-Coordinator/Manager:
-
-Review and approve valid claims.
-Reject invalid claims with feedback.
-Ensure that the claim process is transparent and efficient.
-This workflow ensures that every claim is processed accurately and efficiently, maintaining accountability throughout the process.
-
+The system uses a modern dark-themed interface for accessibility and user comfort.
 Error Handling and Validation
 
-To ensure a reliable user experience, CMCS includes comprehensive error handling and validation mechanisms:
+Robust error handling ensures that users receive helpful feedback when errors occur (e.g., invalid file type or missing data).
+Data Reporting
 
-File Validation: Uploaded documents must be in PDF, DOCX, or XLSX format and must not exceed 5 MB in size.
-Authentication: Role-based authentication ensures only authorized users can access specific pages.
-Error Pages: If an error occurs (e.g., missing documents or unauthorized access), the system provides user-friendly error messages to guide users.
-Benefits of the CMCS System
-The CMCS offers several advantages, including:
+Built-in report generation allows users to export approved claims in PDF or Excel formats.
+User Interface Overview
+Key Pages:
+Login Page
 
-Streamlined Workflows: Automated processes minimize manual effort and reduce administrative overhead.
-Improved Accuracy: Coordinators and managers can easily verify claims with supporting documents.
-Real-time Tracking: Users can monitor the status of claims and receive timely feedback on rejections.
-User-Friendly Interface: Role-specific pages ensure that users can efficiently perform their tasks.
-By automating repetitive tasks, CMCS allows users to focus on more strategic activities. The system promotes continuous improvement by providing feedback on rejected claims, helping lecturers learn from mistakes and submit better claims.
+Users are directed to the login page upon application access or logout.
+Submit Claim Page (Lecturer)
 
+Real-time salary calculation is displayed based on hours worked and hourly rate entered by the lecturer.
+Includes file validation for supporting documents.
+Pending Claims Page (Coordinator/Manager)
+
+Displays a list of claims awaiting review, with options to approve or reject.
+Claims History Page (Lecturer)
+
+Displays all submitted claims with statuses and feedback, allowing lecturers to view details or download supporting documents.
+Approved Claims Report Page (HR)
+
+HR personnel can view all approved claims and download PDF or Excel reports.
+Workflow Summary
+Lecturer Workflow:
+Submit claims with supporting documents.
+View real-time salary calculations.
+Track claim statuses.
+Resubmit rejected claims after corrections.
+Coordinator/Manager Workflow:
+Review pending claims.
+Approve or reject claims.
+Provide feedback on rejected claims.
+HR Workflow:
+View approved claims.
+Generate payroll reports in PDF or Excel formats.
+Benefits of CMCS
+Automation
+
+Automated validation and salary calculations reduce human error and administrative overhead.
+Real-Time Tracking
+
+Users can monitor claim statuses and receive timely feedback on rejections.
+Enhanced Security
+
+Role-based access ensures that only authorized users can perform specific actions.
+Efficient Reporting
+
+HR can generate reports quickly, streamlining payroll processing.
+User-Friendly Interface
+
+The intuitive, responsive design ensures a seamless experience across all roles.
 Conclusion
-The Contract Monthly Claim System (CMCS) provides an efficient solution for managing monthly claims for Independent Contractor lecturers. Through role-based access, automated workflows, and real-time tracking, CMCS ensures that claims are processed with accuracy and accountability.
+The Contract Monthly Claim System (CMCS) is an efficient and reliable solution for managing claims submitted by Independent Contractor lecturers. By leveraging automation, role-based access, and a user-friendly interface, CMCS ensures that all claims are processed with accuracy, transparency, and accountability.
 
-The system not only simplifies administrative tasks but also promotes continuous learning and improvement through feedback on rejected claims. Whether you're a lecturer tracking your claim status or a manager reviewing submissions, CMCS makes the process seamless and intuitive.
-
-With hands-on interaction, users gain practical experience in ASP.NET Core MVC development and learn to apply best practices in software design. CMCS equips users with the skills needed to tackle real-world challenges in software development.
+The project not only simplifies administrative workflows but also provides hands-on experience in ASP.NET Core MVC development and best practices in modern software design.
