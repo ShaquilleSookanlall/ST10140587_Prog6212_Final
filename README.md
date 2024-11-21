@@ -1,4 +1,6 @@
 Contract Monthly Claim System (CMCS)
+
+
 Overview
 The Contract Monthly Claim System (CMCS) is a web-based application built using ASP.NET Core MVC. It streamlines the process of submitting, tracking, and approving claims for Independent Contractor (IC) lecturers. With distinct, role-based functionalities for Lecturers, Coordinators, and Managers, CMCS ensures efficiency, transparency, and accountability throughout the claim management process.
 
